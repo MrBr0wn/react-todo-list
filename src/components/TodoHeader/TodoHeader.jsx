@@ -1,6 +1,7 @@
 import './TodoHeader.css'
 import moment from 'moment'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import DialogModal from '../Dialog/DialogModal';
 
 const whiteColor = '#fff'
 const styles = {
@@ -52,12 +53,12 @@ function TodoHeader() {
         </div>
       </div>
 
-      <div>
-        <div className="add-todo">
-          <AddCircleIcon color='primary' />
-          <span className='icon-background'></span>
-        </div>
+      <div className="add-todo">
+        <AddCircleIcon color='primary' />
+        <span className='icon-background'></span>
       </div>
+
+      <DialogModal />
     </div>
   )
 }
