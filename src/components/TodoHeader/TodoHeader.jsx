@@ -31,7 +31,12 @@ const styles = {
   }
 }
 
-function TodoHeader() {
+const TodoHeader = ({
+  handleOpenDialog,
+  isOpen,
+  handleSetFieldValue,
+  formData
+}) => {
   const weekDay = moment().format('dddd')
   const date = moment().date()
 
@@ -53,12 +58,17 @@ function TodoHeader() {
         </div>
       </div>
 
-      <div className="add-todo">
+      <div className="add-todo" onClick={handleOpenDialog}>
         <AddCircleIcon color='primary' />
         <span className='icon-background'></span>
       </div>
 
-      <DialogModal />
+      <DialogModal
+        isOpen={isOpen}
+        handleOpenDialog={handleOpenDialog}
+        handleSetFieldValue={handleSetFieldValue}
+        formData={formData}
+      />
     </div>
   )
 }

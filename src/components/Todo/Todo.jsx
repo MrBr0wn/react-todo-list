@@ -13,18 +13,27 @@ const initialFormData = {
   index: null
 }
 
-function Todo() {
+const Todo = () => {
   const [tab, setTab] = useState(0)
-  const [isOpen, setOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const [isOpenDisplayTodo, setOpenDisplayTodo] = useState(false)
   const [todo, setTodos] = useState([])
   const [formData, setFormData] = useState(initialFormData)
 
+  console.log('formData: ', formData)
+
   const handleOpenDialog = () => setIsOpen((prevState) => !prevState)
+  const handleSetFieldValue = (fieldName, value) => 
+    setFormData((prevState) => ({ ...prevState, [fieldName]: value }))
 
   return (
     <div className='todo-wrapper'>
-      <TodoHeader />
+      <TodoHeader 
+        handleOpenDialog={handleOpenDialog}
+        isOpen={isOpen}
+        handleSetFieldValue={handleSetFieldValue}
+        formData={formData}
+      />
 
       <TodoActions />
 
