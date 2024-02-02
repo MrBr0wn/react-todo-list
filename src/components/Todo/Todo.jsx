@@ -20,11 +20,10 @@ const Todo = () => {
   const [todo, setTodos] = useState([])
   const [formData, setFormData] = useState(initialFormData)
 
-  console.log('formData: ', formData)
-
   const handleOpenDialog = () => setIsOpen((prevState) => !prevState)
   const handleSetFieldValue = (fieldName, value) => 
     setFormData((prevState) => ({ ...prevState, [fieldName]: value }))
+  const handleChangeTab = (tabValue) => setTab(tabValue)
 
   return (
     <div className='todo-wrapper'>
@@ -35,7 +34,10 @@ const Todo = () => {
         formData={formData}
       />
 
-      <TodoActions />
+      <TodoActions
+        handleChangeTab={handleChangeTab}
+        tab={tab}
+      />
 
       <TodoRender />
     </div>
