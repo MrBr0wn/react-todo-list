@@ -35,7 +35,8 @@ const TodoHeader = ({
   handleOpenDialog,
   isOpen,
   handleSetFieldValue,
-  formData
+  formData,
+  handleSetTodoOnSubmit
 }) => {
   const weekDay = moment().format('dddd')
   const date = moment().date()
@@ -68,6 +69,7 @@ const TodoHeader = ({
         handleOpenDialog={handleOpenDialog}
         handleSetFieldValue={handleSetFieldValue}
         formData={formData}
+        handleSetTodoOnSubmit={handleSetTodoOnSubmit}
       />
     </div>
   )

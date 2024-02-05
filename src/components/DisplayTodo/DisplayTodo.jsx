@@ -1,6 +1,6 @@
 import './DisplayTodo.css'
 
-function DisplayTodo() {
+const DisplayTodo = () => {
   return (
     <div>
   
