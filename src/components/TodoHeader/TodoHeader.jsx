@@ -2,6 +2,7 @@ import './TodoHeader.css'
 import moment from 'moment'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import DialogModal from '../Dialog/DialogModal';
+import DisplayTodo from '../DisplayTodo/DisplayTodo';
 
 const whiteColor = '#fff'
 const styles = {
@@ -36,7 +37,11 @@ const TodoHeader = ({
   isOpen,
   handleSetFieldValue,
   formData,
-  handleSetTodoOnSubmit
+  handleSetTodoOnSubmit,
+  isOpenDisplayTodo,
+  handleEditTodo,
+  handleRemoveTodo,
+  handleCloseButton
 }) => {
   const weekDay = moment().format('dddd')
   const date = moment().date()
@@ -70,6 +75,14 @@ const TodoHeader = ({
         handleSetFieldValue={handleSetFieldValue}
         formData={formData}
         handleSetTodoOnSubmit={handleSetTodoOnSubmit}
+      />
+
+      <DisplayTodo 
+        isOpen={isOpenDisplayTodo}
+        formData={formData}
+        handleCloseButton={handleCloseButton}
+        handleEditTodo={handleEditTodo}
+        handleRemoveTodo={handleRemoveTodo}
       />
     </div>
   )

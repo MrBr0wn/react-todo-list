@@ -20,14 +20,14 @@ const Todo = () => {
   const [isOpenDisplayTodo, setIsOpenDisplayTodo] = useState(false)
   const [todos, setTodos] = useState([])
   const [formData, setFormData] = useState(initialFormData)
+
+  const resetFormData = () => setFormData(initialFormData)
   
   const resetAll = () => {
     setIsOpen(false)
     setIsOpenDisplayTodo(false)
-    setFormData(initialFormData)
+    resetFormData()
   }
-
-  console.log('todos: ', todos)
 
   const handleOpenDialog = () => setIsOpen((prevState) => !prevState)
   const handleSetFieldValue = (fieldName, value) => 
@@ -36,7 +36,13 @@ const Todo = () => {
   const handleSetTodoOnSubmit = (e) => {
     e.preventDefault()
 
-    setTodos((prevState) => [...prevState, { ...formData, id: uuidv4() }])
+    if (formData.isEdit) {
+      const editedTodos = todos
+      editedTodos.splice(formData.index, 1, { ...formData, isEdit: false, index: null })
+      setTodos(editedTodos)
+    } else {
+      setTodos((prevState) => [...prevState, { ...formData, id: uuidv4() }])
+    }
     resetAll()
   }
   const handleMarkTodo = (isChecked, index) => {
@@ -50,6 +56,17 @@ const Todo = () => {
     setFormData(todo)
   }
 
+  const handleEditTodo = () => {
+    setFormData((prevState) => ({ ...prevState, isEdit: true }))
+    setIsOpenDisplayTodo(false)
+    handleOpenDialog()
+  }
+
+  const handleRemoveTodo = () => {
+    setTodos(todos.filter((item) => item.id !== formData.id))
+    resetAll()
+  }
+
   return (
     <div className='todo-wrapper'>
       <TodoHeader 
@@ -58,6 +75,10 @@ const Todo = () => {
         handleSetFieldValue={handleSetFieldValue}
         formData={formData}
         handleSetTodoOnSubmit={handleSetTodoOnSubmit}
+        isOpenDisplayTodo={isOpenDisplayTodo}
+        handleEditTodo={handleEditTodo}
+        handleRemoveTodo={handleRemoveTodo}
+        handleCloseButton={resetAll}
       />
 
       <TodoActions

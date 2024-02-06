@@ -1,0 +1,10 @@
+.display-todo-title {
+  padding: 10px 0;
+}
+
+.display-buttons-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 15px;
+}

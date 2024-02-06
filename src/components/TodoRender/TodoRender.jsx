@@ -31,8 +31,6 @@ const Todo = ({
   )
 }
 
-console.log('TOdoRender')
-
 const TodoRender = (
   {todos, handleMarkTodo, handleOpenTodo}
 ) => {
