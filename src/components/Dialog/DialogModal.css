@@ -3,6 +3,7 @@ form {
   flex-direction: column;
   height: 200px;
   justify-content: space-between;
+  margin: 20px 0;
 }
 
 .MuiDialog-paperWidthSm {
